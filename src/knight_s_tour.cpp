@@ -99,7 +99,7 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
 
     currentGrid.update( {pos_r,pos_c} , 1 , visitedCount ) ;
 
-#ifdef DEBUG
+#ifdef VISUALIZE
     usleep(25000) ;
 #if defined(__linux)
     system("clear") ;
@@ -155,7 +155,7 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
 #endif
     currentGrid.update( {pos_r,pos_c} , 0 , -1 ) ;
     
-#ifdef DEBUG
+#ifdef VISUALIZE
     usleep(25000) ;
 #if defined(__linux)
     system("clear") ;
