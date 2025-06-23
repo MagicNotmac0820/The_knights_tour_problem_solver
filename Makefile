@@ -6,7 +6,7 @@ all: $(BIN_DIR)/knight_s_tour
 .PHONY: clean run visualize
 
 CC = g++
-CXXFLAGS = -fdiagnostics-color=always -std=c++23 -g3 -ggdb -Wall -Wextra
+CXXFLAGS = -fdiagnostics-color=always -std=c++17 -g3 -ggdb -Wall -Wextra
 HEADERS = $(wildcard $(INCLUDE)/*.h $(INCLUDE)/*.hpp)
 
 $(BIN_DIR): 
