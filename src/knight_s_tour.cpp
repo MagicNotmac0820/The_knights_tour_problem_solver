@@ -9,7 +9,7 @@ using std::vector ;
 using std::pair ;
 using std::unordered_set ;
 using std::priority_queue ;
-#define GREEDY_ALGO
+#define GREEDY_OPTIMIZED
 
 class Grid ;
 class Board ;
@@ -110,11 +110,13 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
 #endif
 
     const auto &adjGrids = currentGrid.getAdjGrids() ;
-#ifdef GREEDY_ALGO
+#ifdef GREEDY_OPTIMIZED
     for( const auto &[r_coordinate,c_coordinate] : adjGrids )
         board.getCurrentGrid( r_coordinate , c_coordinate ).removeAdjGrid({pos_r,pos_c}) ;
         
-    priority_queue< pair<int,int> , vector<pair<int,int>> , Compare_BoardBased > pq( adjGrids.begin() , adjGrids.end() , board ) ;
+    priority_queue< pair<int,int> , 
+                    vector<pair<int,int>> ,
+                    Compare_BoardBased > pq( adjGrids.begin() , adjGrids.end() , board ) ;
     while(!pq.empty()){
         pair<int,int> adjPosition = pq.top() ;
         pq.pop() ;
@@ -131,7 +133,7 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
         }
     }
 #else    
-    for( auto [r_coordinate,c_coordinate] : adjGrids ){
+    for( const auto &[r_coordinate,c_coordinate] : adjGrids ){
         Grid &grid = board.getCurrentGrid( r_coordinate , c_coordinate ) ;
         grid.removeAdjGrid({pos_r,pos_c}) ;
         if(backtrack( board , r_coordinate , c_coordinate , visitedCount+1 )){
@@ -149,8 +151,8 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
     }
 #endif
 
-#ifdef GREEDY_ALGO
-    for( auto [r_coordinate,c_coordinate] : adjGrids )
+#ifdef GREEDY_OPTIMIZED
+    for( const auto &[r_coordinate,c_coordinate] : adjGrids )
         board.getCurrentGrid( r_coordinate , c_coordinate ).insertAdjGrid({pos_r,pos_c}) ;
 #endif
     currentGrid.update( {pos_r,pos_c} , 0 , -1 ) ;
@@ -223,7 +225,7 @@ const unordered_set< pair<int,int> , Grid::MyHash > &Grid::getAdjGrids(void)cons
 }
 
 void Grid::findAdjGrids( const Board &board ){
-    for( auto [di,dj] : Grid::dir ){
+    for( const auto &[di,dj] : Grid::dir ){
         int rowOfAdjGrid = position.first + di ;
         int columnOfAdjGrid = position.second + dj ;
         if(!board.isWithinBounds( rowOfAdjGrid , columnOfAdjGrid ))
@@ -264,10 +266,10 @@ void Grid::print(void)const {
             cout << BG_BLUE << setw(5) << ' ' << DEFAULT ;
             break ;
         case 1 :
-            cout << BG_RED << WHITE << setw(5) << visitedCount << DEFAULT ;
+            cout << BG_RED << BLACK << setw(5) << visitedCount << DEFAULT ;
             break ;
         case 2 :
-            cout << BG_GREEN_L << WHITE << setw(5) << visitedCount << DEFAULT ;
+            cout << BG_GREEN_L << BLACK << setw(5) << visitedCount << DEFAULT ;
             break ;
     }
 
