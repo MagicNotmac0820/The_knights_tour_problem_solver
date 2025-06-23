@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <utility>
+#include <unordered_set>
+#include <queue>
+#include <unistd.h>
 #include <io_handler.h>
 #include <color.hpp>
 using std::cin ;
@@ -79,13 +85,6 @@ struct Compare_BoardBased{
 bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visitedCount ){
     if( visitedCount == boardSize ){
         board.getCurrentGrid( pos_r , pos_c ).update( {pos_r,pos_c} , 2 , visitedCount ) ;
-        usleep(25000) ;
-#if defined(__linux)
-        system("clear") ;
-#elif defined(__WIN32) || defined(__WIN64)
-        system("cls") ;
-#endif
-        board.print() ;
         return true ;
     }
     if(!(board.isWithinBounds( pos_r , pos_c )))
@@ -122,13 +121,6 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
         pq.pop() ;
         if(backtrack( board , boardSize , adjPosition.first , adjPosition.second , visitedCount+1 )){
             currentGrid.update( {pos_r,pos_c} , 2 , visitedCount ) ;
-            usleep(25000) ;
-#if defined(__linux)
-            system("clear") ;
-#elif defined(__WIN32) || defined(__WIN64)
-            system("cls") ;
-#endif
-            board.print() ;
             return true ;
         }
     }
@@ -207,6 +199,13 @@ int main(void){
     cout << "---------------------------" << '\n'  ;
 
     backtrack( map , boardSize*boardSize , startPosition.first , startPosition.second , 1 ) ;
+    usleep(25000) ;
+#if defined(__linux)
+    system("clear") ;
+#elif defined(__WIN32) || defined(__WIN64)
+    system("cls") ;
+#endif
+    map.print() ;
 
     return EXIT_SUCCESS ;
 }
