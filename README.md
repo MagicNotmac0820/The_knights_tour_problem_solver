@@ -27,4 +27,7 @@ $ git clone https://github.com/MagicNotmac0820/The_knights_tour_problem_solver.g
     ```
 
 ## Demo
-A demonstration video will be added soon.
+
+https://github.com/user-attachments/assets/d2668090-d537-4cf9-b6ee-cd26fcdf9f9b
+
+
