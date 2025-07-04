@@ -25,4 +25,6 @@
 #define BLACK "\x1B[1;38;5;0m"
 #define DEFAULT "\x1B[0;m"
 
+#define CLEAR_WINDOW "\x1B[2J\x1B[H"
+
 #endif  //_COLOR_CPP_H_
