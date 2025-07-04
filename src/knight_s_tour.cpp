@@ -6,7 +6,7 @@
 #include <queue>
 #include <unistd.h>
 #include <io_handler.h>
-#include <color.hpp>
+#include <output_style.hpp>
 using std::cin ;
 using std::cout ;
 using std::setw ;
