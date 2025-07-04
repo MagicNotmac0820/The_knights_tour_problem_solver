@@ -100,11 +100,7 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
 
 #ifdef VISUALIZE
     usleep(25000) ;
-#if defined(__linux)
-    system("clear") ;
-#elif defined(__WIN32) || defined(__WIN64)
-    system("cls") ;
-#endif
+    cout << CLEAR_WINDOW ;
     board.print() ;
 #endif
 
@@ -131,11 +127,7 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
         if(backtrack( board , r_coordinate , c_coordinate , visitedCount+1 )){
             currentGrid.update( {pos_r,pos_c} , 2 , visitedCount ) ;
             usleep(500000) ;
-#if defined(__linux)
-            system("clear") ;
-#elif defined(__WIN32) || defined(__WIN64)
-            system("cls") ;
-#endif
+            cout << CLEAR_WINDOW ;
             board.print() ;
             return true ;
         }
@@ -151,11 +143,7 @@ bool backtrack( Board &board , int boardSize , int pos_r , int pos_c , int visit
     
 #ifdef VISUALIZE
     usleep(25000) ;
-#if defined(__linux)
-    system("clear") ;
-#elif defined(__WIN32) || defined(__WIN64)
-    system("cls") ;
-#endif
+    cout << CLEAR_WINDOW ;
     board.print() ;
 #endif 
 
@@ -200,11 +188,7 @@ int main(void){
 
     backtrack( map , boardSize*boardSize , startPosition.first , startPosition.second , 1 ) ;
     usleep(25000) ;
-#if defined(__linux)
-    system("clear") ;
-#elif defined(__WIN32) || defined(__WIN64)
-    system("cls") ;
-#endif
+    cout << CLEAR_WINDOW ;
     map.print() ;
 
     return EXIT_SUCCESS ;
